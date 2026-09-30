@@ -1,6 +1,13 @@
----
+# 5. Project 4: Custom 3D Math & Matrix Library (C++)
 
-## 4. Custom 3D Math & Matrix Library (C++)
+### Repository Name: `custom-3d-math-library`
+### Required Files in Repo:
+- `include/Vector3.hpp`, `include/Matrix4.hpp`, `include/Quaternion.hpp`
+- `tests/test_math.cpp` (Unit tests verifying math accuracy)
+- `CMakeLists.txt`
+- `README.md`
+
+### Copy & Paste Content for `README.md`:
 
 ```markdown
 # Custom 3D Game Math & Matrix Library
@@ -22,35 +29,35 @@ This library implements 3D linear algebra fundamental operations from scratch, f
 ## Key Features
 
 - **Vector Math:** `Vector2`, `Vector3`, `Vector4` (Dot product, Cross product, Normalization, Reflection).
-- **Matrix Transformation Operations:** $4\times 4$ Matrices handling Translation, Rotation, Scaling, Perspective Projection, and LookAt view transformations.
+- **Matrix Transformations:** $4\times 4$ Matrices handling Translation, Rotation, Scaling, Perspective Projection, and LookAt view transformations.
 - **Quaternions:** Smooth spatial rotations avoiding Gimbal Lock, featuring Spherical Linear Interpolation (`SLERP`).
 - **SIMD Layout Compatibility:** Memory-aligned structures ready for SSE instruction optimizations.
 
 ---
 
-## Mathematical Foundations (The Metaphor)
-
-Think of a $4\times 4$ Matrix as a **3D GPS coordinate transformer**:
-* When an enemy model steps forward, turns left, and scales up in size, multiplying its local vector by a matrix applies all those spatial changes in a single calculation step.
-
----
-
-## Example Usage
+## Code Example
 
 ```cpp
-#include "Math/Matrix4.hpp"
-#include "Math/Vector3.hpp"
+#include "Matrix4.hpp"
+#include "Vector3.hpp"
+#include <iostream>
 
-// Define a world transform
-Vector3 position(0.0f, 5.0f, 10.0f);
-Vector3 scale(2.0f, 2.0f, 2.0f);
+int main() {
+    // Define position and scale vectors
+    Vector3 position(0.0f, 5.0f, 10.0f);
+    Vector3 scale(2.0f, 2.0f, 2.0f);
 
-Matrix4 translationMatrix = Matrix4::Translate(position);
-Matrix4 scaleMatrix = Matrix4::Scale(scale);
+    // Create transformation matrices
+    Matrix4 translationMatrix = Matrix4::Translate(position);
+    Matrix4 scaleMatrix = Matrix4::Scale(scale);
 
-// Combine transformations
-Matrix4 worldMatrix = translationMatrix * scaleMatrix;
+    // Combine transformations
+    Matrix4 worldMatrix = translationMatrix * scaleMatrix;
 
-// Transform a local point into world space
-Vector3 localPoint(1.0f, 0.0f, 0.0f);
-Vector3 worldPoint = worldMatrix.TransformPoint(localPoint);
+    // Transform local point to world space
+    Vector3 localPoint(1.0f, 0.0f, 0.0f);
+    Vector3 worldPoint = worldMatrix.TransformPoint(localPoint);
+
+    std::cout << "World Point: (" << worldPoint.x << ", " << worldPoint.y << ", " << worldPoint.z << ")\n";
+    return 0;
+}
