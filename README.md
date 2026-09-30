@@ -1,13 +1,3 @@
-# 5. Project 4: Custom 3D Math & Matrix Library (C++)
-
-### Repository Name: `custom-3d-math-library`
-### Required Files in Repo:
-- `include/Vector3.hpp`, `include/Matrix4.hpp`, `include/Quaternion.hpp`
-- `tests/test_math.cpp` (Unit tests verifying math accuracy)
-- `CMakeLists.txt`
-- `README.md`
-
-### Copy & Paste Content for `README.md`:
 
 ```markdown
 # Custom 3D Game Math & Matrix Library
